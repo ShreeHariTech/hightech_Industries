@@ -1,6 +1,5 @@
 /**
- * High Tech Industries - Main Application JavaScript
- * Vanilla JavaScript implementation for Corporate Industrial UX
+ * High Tech Industries - Main JavaScript
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -8,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu();
   initScrollAnimations();
   initEnquiryForms();
-  initModalHandlers();
+  initHeroParallax();
 });
 
 /* 1. STICKY HEADER WITH HEIGHT REDUCTION & SHADOW ON SCROLL */
@@ -30,8 +29,8 @@ function initStickyHeader() {
 
 /* 2. MOBILE MENU OVERLAY & TOGGLE */
 function initMobileMenu() {
-  const toggleBtn = document.getElementById('mobileNavToggle') || document.getElementById('menuToggle');
-  const navMenu = document.getElementById('mobileFullMenu') || document.getElementById('navMenu');
+  const toggleBtn = document.getElementById('mobileNavToggle');
+  const navMenu = document.getElementById('mobileFullMenu');
 
   if (!toggleBtn || !navMenu) return;
 
@@ -61,7 +60,7 @@ function initMobileMenu() {
   });
 }
 
-/* 3. INTERSECTION OBSERVER SUBTLE REVEAL ANIMATIONS */
+/* 3. INTERSECTION OBSERVER REVEAL ANIMATIONS */
 function initScrollAnimations() {
   const revealElements = document.querySelectorAll('.reveal-fade-up, .reveal-clip-up, .reveal-fade-left, .reveal-fade-right');
   if (!revealElements.length) return;
@@ -88,7 +87,7 @@ function initScrollAnimations() {
   }
 }
 
-/* 4. ENQUIRY & QUOTATION FORM HANDLING */
+/* 4. ENQUIRY FORM HANDLING */
 function initEnquiryForms() {
   const forms = document.querySelectorAll('#rfqForm, #contactForm, .enquiry-form');
   forms.forEach(form => {
@@ -111,7 +110,6 @@ function initEnquiryForms() {
           submitBtn.style.borderColor = '#16a34a';
         }
 
-        // Show success alert message in form container
         let successBox = form.querySelector('.form-success-message');
         if (!successBox) {
           successBox = document.createElement('div');
@@ -124,7 +122,7 @@ function initEnquiryForms() {
             color: #166534;
             font-size: 0.9rem;
             font-weight: 600;
-            border-radius: 4px;
+            border-radius: 2px;
             text-align: center;
           `;
           form.appendChild(successBox);
@@ -145,71 +143,43 @@ function initEnquiryForms() {
   });
 }
 
-/* 5. GLOBAL MODAL HANDLERS FOR PRODUCT DETAILS */
-function initModalHandlers() {
-  const modal = document.getElementById('productDetailModal');
-  if (!modal) return;
+/* 5. HERO MICRO-PARALLAX ON MOUSE MOVEMENT */
+function initHeroParallax() {
+  const heroSection = document.getElementById('hero');
+  const machineWrap = document.getElementById('heroMachineWrap');
+  const cadLayer = document.getElementById('heroCadLayer');
 
-  // Close modal on overlay background click
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      closeProductModal();
-    }
+  if (!heroSection || !machineWrap) return;
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReduced) return;
+
+  let requestID = null;
+
+  heroSection.addEventListener('mousemove', (e) => {
+    if (window.innerWidth < 1024) return;
+
+    const rect = heroSection.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+
+    if (requestID) cancelAnimationFrame(requestID);
+
+    requestID = requestAnimationFrame(() => {
+      const machineX = (x / rect.width) * 12;
+      const machineY = (y / rect.height) * 10;
+      machineWrap.style.transform = `translate(${machineX.toFixed(2)}px, ${machineY.toFixed(2)}px)`;
+
+      if (cadLayer) {
+        const cadX = (-x / rect.width) * 5;
+        const cadY = (-y / rect.height) * 4;
+        cadLayer.style.transform = `translate(${cadX.toFixed(2)}px, ${cadY.toFixed(2)}px)`;
+      }
+    });
   });
 
-  // Close on Escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('active')) {
-      closeProductModal();
-    }
+  heroSection.addEventListener('mouseleave', () => {
+    machineWrap.style.transform = 'translate(0px, 0px)';
+    if (cadLayer) cadLayer.style.transform = 'translate(0px, 0px)';
   });
 }
-
-window.closeProductModal = function () {
-  const modal = document.getElementById('productDetailModal');
-  if (modal) {
-    modal.classList.remove('active');
-    document.body.style.overflow = '';
-  }
-};
-
-window.openProductModal = function (productId) {
-  if (typeof PRODUCTS_DATA === 'undefined') return;
-  const product = PRODUCTS_DATA.find(p => p.id === productId);
-  if (!product) return;
-
-  const modal = document.getElementById('productDetailModal');
-  if (!modal) return;
-
-  const titleEl = document.getElementById('modalProdTitle');
-  const catEl = document.getElementById('modalProdCat');
-  const imgEl = document.getElementById('modalProdImg');
-  const descEl = document.getElementById('modalProdDesc');
-  const specsTableEl = document.getElementById('modalProdSpecs');
-
-  if (titleEl) titleEl.textContent = product.name;
-  if (catEl) catEl.textContent = product.category;
-  if (imgEl) {
-    imgEl.src = product.image;
-    imgEl.alt = product.name;
-  }
-  if (descEl) descEl.textContent = product.description;
-
-  if (specsTableEl && product.specs) {
-    specsTableEl.innerHTML = product.specs.map(s => `
-      <tr style="border-bottom: 1px solid #E2E8F0;">
-        <th style="padding: 0.6rem 0; font-size: 0.8rem; font-weight: 700; color: #62676C; text-align: left; text-transform: uppercase;">${s.label}</th>
-        <td style="padding: 0.6rem 0; font-size: 0.95rem; font-weight: 700; color: #25282B; text-align: right;">${s.val}</td>
-      </tr>
-    `).join('');
-  }
-
-  // Pre-fill enquiry product select if user clicks Request Quote in modal
-  const cProductSelect = document.getElementById('cProduct');
-  if (cProductSelect) {
-    cProductSelect.value = product.name;
-  }
-
-  modal.classList.add('active');
-  document.body.style.overflow = 'hidden';
-};
