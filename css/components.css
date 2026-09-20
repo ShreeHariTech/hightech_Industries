@@ -1,0 +1,639 @@
+/* 
+  High Tech Industries - Light Theme Editorial Components & Stages
+*/
+
+/* HERO LIGHT STAGE */
+.hero-light-stage {
+  min-height: 92vh;
+  padding-top: calc(var(--header-height) + 4rem);
+  padding-bottom: 5rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background-color: var(--bg-surface);
+}
+
+.hero-grid-layout {
+  display: grid;
+  grid-template-columns: 1.05fr 1.15fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.hero-typography-block {
+  z-index: 10;
+}
+
+.hero-super-title {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero-sub-text {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  max-width: 520px;
+  line-height: 1.65;
+  margin-bottom: 2.25rem;
+}
+
+.hero-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.btn-primary-hero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 2.25rem;
+  background: var(--accent-blue-primary);
+  color: var(--text-on-dark);
+  font-family: var(--font-display);
+  font-size: 0.825rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: all 0.3s var(--ease-out-expo);
+  box-shadow: 0 4px 14px rgba(33, 87, 163, 0.3);
+  border: 1px solid var(--accent-blue-primary);
+  cursor: pointer;
+}
+
+.btn-primary-hero:hover {
+  background: var(--accent-blue-dark);
+  border-color: var(--accent-blue-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(8, 36, 76, 0.3);
+}
+
+.btn-outline-hero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2.25rem;
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--text-primary);
+  font-family: var(--font-display);
+  font-size: 0.825rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-outline-hero:hover {
+  background: var(--text-primary);
+  color: var(--text-on-dark);
+}
+
+/* HERO PRODUCT COMPOSITION */
+.hero-product-stage {
+  position: relative;
+  width: 100%;
+  height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+}
+
+.hero-product-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 45%, #FFFFFF 0%, #EDF2F7 100%);
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem;
+  box-shadow: 0 25px 50px -12px rgba(8, 36, 76, 0.12);
+  transform-style: preserve-3d;
+  transition: transform 0.2s ease-out;
+}
+
+.hero-product-frame img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 30px rgba(8, 36, 76, 0.2));
+}
+
+.hero-tech-annotation {
+  position: absolute;
+  background: var(--text-primary);
+  color: var(--text-on-dark);
+  padding: 0.6rem 1rem;
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 10;
+}
+
+.hero-tech-annotation.top-right {
+  top: 20px;
+  right: -15px;
+}
+
+.hero-tech-annotation.bottom-left {
+  bottom: 25px;
+  left: -15px;
+}
+
+/* SECTION 01 — MACHINERY SHOWCASE (EDITORIAL ALTERNATING) */
+.editorial-section {
+  padding: 8rem 0;
+}
+
+.editorial-header {
+  margin-bottom: 4.5rem;
+}
+
+.editorial-display-title {
+  font-family: var(--font-display);
+  font-size: 3.25rem;
+  font-weight: 900;
+  line-height: 1.05;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  margin-top: 0.75rem;
+  color: var(--text-primary);
+}
+
+.editorial-stage {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 4.5rem;
+  align-items: center;
+  margin-bottom: 7rem;
+}
+
+.editorial-stage.reverse {
+  grid-template-columns: 1fr 1.1fr;
+}
+
+.editorial-stage.reverse .stage-visual {
+  order: 2;
+}
+
+.editorial-stage.reverse .stage-content {
+  order: 1;
+}
+
+.stage-visual {
+  position: relative;
+  background: var(--bg-stage-grey);
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  padding: 3rem;
+  overflow: hidden;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.04);
+}
+
+.stage-visual img {
+  width: 100%;
+  height: 380px;
+  object-fit: contain;
+  filter: drop-shadow(0 15px 25px rgba(8, 36, 76, 0.15));
+  transition: transform 0.6s var(--ease-out-expo);
+}
+
+.stage-visual:hover img {
+  transform: scale(1.04);
+}
+
+.stage-num {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--accent-blue-primary);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.stage-title {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 1.25rem;
+  color: var(--text-primary);
+}
+
+.stage-desc {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.stage-specs-row {
+  display: flex;
+  gap: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px dashed var(--border-light);
+}
+
+.stage-spec-val {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--accent-blue-primary);
+}
+
+.stage-spec-lbl {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* SECTION 02 — PRECISION ENGINEERING SECTION */
+.precision-section {
+  padding: 8rem 0;
+  background-color: var(--bg-subtle-grey);
+}
+
+.precision-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4.5rem;
+  align-items: center;
+}
+
+.precision-points-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  margin-top: 2rem;
+}
+
+.precision-item {
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 1.25rem;
+}
+
+.precision-item-num {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--accent-blue-primary);
+  margin-bottom: 0.25rem;
+}
+
+.precision-item-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin-bottom: 0.35rem;
+}
+
+.precision-item-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* SECTION 03 — MANUFACTURING CAPABILITIES TIMELINE */
+.capabilities-section {
+  padding: 8rem 0;
+  background-color: var(--bg-main);
+}
+
+.capabilities-steps-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.25rem;
+  margin-top: 3.5rem;
+}
+
+.cap-step-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-top: 3px solid var(--accent-blue-primary);
+  padding: 2rem 1.25rem;
+  border-radius: 2px;
+}
+
+.cap-step-num {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--accent-blue-primary);
+  margin-bottom: 0.75rem;
+}
+
+.cap-step-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.cap-step-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* SECTION 04 — APPLICATIONS PANELS */
+.applications-editorial-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3.5rem;
+}
+
+.app-panel-card {
+  background: var(--bg-main);
+  border: 1px solid var(--border-light);
+  padding: 2.5rem 2rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.app-panel-card:hover {
+  border-color: var(--accent-blue-primary);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(8, 36, 76, 0.08);
+}
+
+.app-panel-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.app-panel-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* PRODUCT CATALOGUE CONTROLS */
+.catalogue-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.category-pills {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.cat-pill-btn {
+  background: var(--bg-main);
+  border: 1px solid var(--border-light);
+  color: var(--text-primary);
+  padding: 0.6rem 1.1rem;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all var(--duration-fast) ease;
+}
+
+.cat-pill-btn:hover,
+.cat-pill-btn.active {
+  background: var(--accent-blue-primary);
+  color: var(--text-on-dark);
+  border-color: var(--accent-blue-primary);
+}
+
+.search-box {
+  position: relative;
+  min-width: 280px;
+}
+
+.search-input {
+  width: 100%;
+  background: var(--bg-main);
+  border: 1px solid var(--border-light);
+  padding: 0.65rem 1rem 0.65rem 2.5rem;
+  border-radius: 2px;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--accent-blue-primary);
+}
+
+.search-icon {
+  position: absolute;
+  left: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+/* MODAL DIALOG */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 17, 17, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-container {
+  background: var(--bg-main);
+  width: 100%;
+  max-width: 860px;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+  position: relative;
+  transform: translateY(20px) scale(0.95);
+  transition: transform 0.3s ease;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-overlay.active .modal-container {
+  transform: translateY(0) scale(1);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 2rem;
+  border-bottom: 1px solid var(--border-light);
+  background: var(--bg-surface);
+}
+
+.modal-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+.modal-close-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.25rem;
+  line-height: 1;
+}
+
+.modal-body {
+  padding: 2rem;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 2rem;
+}
+
+.modal-image-box {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: 2px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+}
+
+.modal-image-box img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.modal-specs-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+}
+
+.modal-specs-table th,
+.modal-specs-table td {
+  padding: 0.6rem 0.8rem;
+  font-size: 0.85rem;
+  border-bottom: 1px solid var(--border-light);
+  text-align: left;
+}
+
+.modal-specs-table th {
+  font-weight: 700;
+  color: var(--text-secondary);
+  width: 40%;
+}
+
+.modal-specs-table td {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* SECTION 07 — FINAL INQUIRY & CONTACT */
+.final-cta-section {
+  padding: 8rem 0;
+  background-color: var(--bg-surface);
+}
+
+.final-cta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 4.5rem;
+}
+
+.inquiry-card {
+  background: var(--bg-main);
+  border: 1px solid var(--border-light);
+  padding: 3rem;
+  border-radius: 4px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.04);
+}
+
+.form-group-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+  display: block;
+}
+
+.form-control-input {
+  width: 100%;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  color: var(--text-primary);
+  padding: 0.85rem 1rem;
+  border-radius: 2px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease;
+}
+
+.form-control-input:focus {
+  outline: none;
+  border-color: var(--accent-blue-primary);
+  background: var(--bg-main);
+}
